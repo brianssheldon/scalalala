@@ -127,13 +127,18 @@ object NewMain {
     order6.products = List(prod1, prod2, prod3, prod7, prod11)
     order7.products = List(prod11)
     
-    var user1: User = new User("User 1", List(order1, order2, order3))
+    var user1: User = new User("User 1", List(new Order(1, List(new Product(1, "desc 1", "cat1"), 
+								new Product(2, "desc 2", "cat2"), 
+								new Product(3, "desc 3", "cat3"))), 
+					      new Order(2, List(prod4, prod5, prod6, prod7)),
+					      new Order(3, List(prod3))))
     var user2: User = new User("User 2", List(order4, order5, order6))
     var user3: User = new User("User 3", List(order7))
     
     
     println("-----user  1 -------")
-    println(user1)
+    println(user1.orders.foreach(o => o.products.foreach(p => println(" " + p.id + " " + p.category + " " + p.desc))))
+    
     println("-----user  2 -------")
     println(user2)
     println("-----user  3 -------")
@@ -142,18 +147,12 @@ object NewMain {
   
   def getOrder(i: Int): Order = 
   {
-    var order: Order = new Order()
-    order.id = i
-    return order
+    return new Order(i, Nil)
   }
   
   def getProduct(i: Int): Product = 
   {
-    var prod: Product = new Product()
-    prod.category = "cat" + i
-    prod.desc = "desc " + i
-    prod.id = i
-    return prod
+    return new Product(i, "desc " + i, "cat" + i)
   }
   
 }
