@@ -22,9 +22,11 @@ class NewJUnitTest {
   def example = {
 //    var x: Array[String] = new Array["",""]
 //    NewMain(null, 1)
-    var x:Array[String] = new Array[String](1)
-    x(0) = "abcdefg";
-    NewMain.main(x);
+    var x:Array[String] = new Array[String](3)
+    x(0) = "abcdefg"
+    x(1) = "hijklmn"
+    x(2) = "opqrstu"
+    NewMain.main(x)
   }
 
 }
