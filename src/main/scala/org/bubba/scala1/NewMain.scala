@@ -137,13 +137,25 @@ object NewMain {
     
     
     println("-----user  1 -------")
-    println(user1.orders.foreach(o => o.products.foreach(p => println(" " + p.id + " " + p.category + " " + p.desc))))
-    
+//    println(user1.orders.foreach(o => o.products.foreach(p => println(" " + p.id + " " + p.category + " " + p.desc))))
+    println("User: " + user1.name)
+    println(user1.orders.foreach(o => processOrders(o)))
+
     println("-----user  2 -------")
-    println(user2)
+    println("User: " + user2.name)
+    println(user2.orders.foreach(o => processOrders(o)))
+
     println("-----user  3 -------")
-    println(user3)
+    println("User: " + user3.name)
+    println(user3.orders.foreach(o => processOrders(o)))
   }
+  
+  def processOrders(o : Order)
+  {
+    println("    Order# " + o.id)
+    o.products.foreach(p => println("           " + p.id + " " + p.category + " " + p.desc))
+  }
+  
   
   def getOrder(i: Int): Order = 
   {
