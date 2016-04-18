@@ -1,5 +1,6 @@
 package org.bubba.scala1
 
+import java.io.File
 import java.util.Date
 
 object NewMain {
@@ -44,6 +45,8 @@ object NewMain {
     println("string + sb: " + asdfas);
     
     doOrderStuff()
+    
+    doFileStuff()
   }
 
   def apply(f: Int => String, v: Int) = f(v)
@@ -148,6 +151,10 @@ object NewMain {
     println("-----user  3 -------")
     println("User: " + user3.name)
     println(user3.orders.foreach(o => processOrders(o)))
+    
+    val products: List[Product] = List(prod1, prod2, prod3, prod4)
+    def product(id:Int) = products.find(p => p.id == id)
+    product(1).foreach(p => println("           zz2 " + p.id + " " + p.category + " " + p.desc))
   }
   
   def processOrders(o : Order)
@@ -167,4 +174,15 @@ object NewMain {
     return new Product(i, "desc " + i, "cat" + i)
   }
   
+  def getListOfSubDirectories(directoryName: String): Array[String] = {
+    return (new File(directoryName)).listFiles.filter(_.isDirectory).map(_.getName)
+}
+
+  def doFileStuff()
+  {
+    var dirs = getListOfSubDirectories("C:\\Projects\\git-projects")
+    
+    dirs.foreach(p => println(p))
+    
+  }
 }
